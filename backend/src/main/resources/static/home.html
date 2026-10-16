@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/home" class="brand"><span class="brand-mark">S</span>Studio</a>
+      <button type="button" class="btn-outline" id="logoutButton">Log out</button>
+    </div>
+  </header>
+
+  <!-- Hidden until /api/me confirms the session, so logged-out visitors never see a blank profile -->
+  <main class="home" id="homeContent" hidden>
+    <section class="hero">
+      <p class="hero-kicker">Your personal space</p>
+      <h1>Welcome, <span id="heroName"></span>!</h1>
+      <p>Here's a quick look at your profile.</p>
+    </section>
+
+    <section class="profile">
+      <div class="profile-head">
+        <div class="avatar" id="avatar" aria-hidden="true"></div>
+        <div>
+          <p class="profile-kicker">Account overview</p>
+          <h2>User Profile</h2>
+        </div>
+      </div>
+
+      <dl class="profile-fields">
+        <div>
+          <dt>Name</dt>
+          <dd id="profileName"></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd id="profileEmail"></dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <script src="/js/home.js"></script>
+</body>
+</html>
