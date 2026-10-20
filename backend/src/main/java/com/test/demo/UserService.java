@@ -1,6 +1,8 @@
 package com.test.demo;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -11,11 +13,18 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class UserService {
 
+	private static final Set<String> AVATAR_TYPES = Set.of("image/png", "image/jpeg", "image/gif", "image/webp");
+
 	private final UserRepository userRepository;
+	private final LoginHistoryRepository loginHistoryRepository;
+	private final AvatarRepository avatarRepository;
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-	public UserService(UserRepository userRepository) {
+	public UserService(UserRepository userRepository, LoginHistoryRepository loginHistoryRepository,
+			AvatarRepository avatarRepository) {
 		this.userRepository = userRepository;
+		this.loginHistoryRepository = loginHistoryRepository;
+		this.avatarRepository = avatarRepository;
 	}
 
 	public Users register(String name, String email, String password) {
@@ -48,11 +57,46 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 
+	// Every attempt on an existing account is recorded in its login history, failed ones too
 	public Optional<Users> authenticate(String email, String password) {
-		if (password == null) {
-			return Optional.empty();
+		Optional<Users> account = findByEmail(email);
+		boolean success = account.isPresent() && password != null
+				&& passwordEncoder.matches(password, account.get().getPassword());
+		account.ifPresent(user -> loginHistoryRepository.save(new LoginHistory(user.getId(), success)));
+		return success ? account : Optional.empty();
+	}
+
+	// The signed-in user for a session's user id, or 401 when nobody is logged in
+	public Users requireUser(Long userId) {
+		return Optional.ofNullable(userId)
+				.flatMap(userRepository::findById)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Please log in"));
+	}
+
+	public List<LoginHistory> loginHistory(Users user) {
+		return loginHistoryRepository.findByUserIdOrderByLoginTimeDescIdDesc(user.getId());
+	}
+
+	public void changePassword(Users user, String currentPassword, String newPassword) {
+		if (currentPassword == null || !passwordEncoder.matches(currentPassword, user.getPassword())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your current password is incorrect");
 		}
-		return findByEmail(email)
-				.filter(user -> passwordEncoder.matches(password, user.getPassword()));
+		if (newPassword == null || newPassword.length() < 6) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "New password must be at least 6 characters");
+		}
+		user.setPassword(passwordEncoder.encode(newPassword));
+		userRepository.save(user);
+	}
+
+	public void saveAvatar(Users user, String contentType, byte[] data) {
+		// Raster images only: an uploaded SVG could carry script
+		if (data.length == 0 || contentType == null || !AVATAR_TYPES.contains(contentType)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Please choose a PNG, JPEG, GIF or WebP image");
+		}
+		avatarRepository.save(new Avatar(user.getId(), contentType, data));
+	}
+
+	public Optional<Avatar> findAvatar(Users user) {
+		return avatarRepository.findById(user.getId());
 	}
 }
