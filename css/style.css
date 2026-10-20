@@ -236,93 +236,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* ===== Home page ===== */
-.welcome-box {
-  margin-top: 48px;
-  padding: 50px 20px;
-  border-radius: 14px;
-  text-align: center;
-  background: linear-gradient(120deg, #e3eafc 0%, #f9fbff 100%);
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
-}
-
-.welcome-box h1 {
-  color: var(--navy);
-  font-weight: 700;
-  font-size: 2.6rem;
-}
-
-.welcome-box p {
-  font-size: 1.25rem;
-  margin: 0;
-}
-
-.courses-title {
-  color: var(--navy);
-  font-weight: 700;
-  font-size: 2.1rem;
-  text-align: center;
-  margin: 50px 0 45px;
-}
-
-.course-card {
-  border-radius: 12px;
-  border-left: 6px solid;
-  padding: 28px 30px;
-  height: 100%;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.course-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
-}
-
-.course-card h3 {
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 0.6rem;
-}
-
-.course-card p {
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.course-card .btn {
-  color: #fff;
-  border: none;
-  padding: 0.55rem 1.1rem;
-  font-size: 1.05rem;
-  transition: background 0.2s, color 0.2s;
-}
-
-.course-card .btn:hover {
-  background: transparent;
-  color: #9ca3af;
-}
-
-.course-html { background: #fdece5; border-color: #e0663a; }
-.course-html h3 { color: #c84b22; }
-.course-html .btn { background: #e0663a; }
-
-.course-css { background: #e6f0fd; border-color: #2f77d0; }
-.course-css h3 { color: #2563b0; }
-.course-css .btn { background: #2f77d0; }
-
-.course-bootstrap { background: #efe5fb; border-color: #7a46b8; }
-.course-bootstrap h3 { color: #6f3cae; }
-.course-bootstrap .btn { background: #7a46b8; }
-
-.course-js { background: #fdf6d6; border-color: #b8960a; }
-.course-js h3 { color: #7d6503; }
-.course-js .btn { background: #b8960a; }
-
-.home-main {
-  padding-bottom: 48px;
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 991.98px) {
   .hero-title { font-size: 3rem; }
@@ -335,5 +248,4 @@ body {
   .hero-title { font-size: 2.2rem; }
   .hero-text { font-size: 1rem; }
   .goal-title { font-size: 2rem; }
-  .welcome-box h1 { font-size: 1.9rem; }
 }
