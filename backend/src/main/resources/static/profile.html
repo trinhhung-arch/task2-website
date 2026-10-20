@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | SMS</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+
+  <main class="wrap" hidden>
+    <div class="page-head">
+      <div>
+        <p class="kicker">Your account</p>
+        <h1>Profile</h1>
+      </div>
+    </div>
+
+    <section class="card profile">
+      <div class="flash" id="flash" role="status" hidden></div>
+
+      <div class="profile-head">
+        <div class="avatar">
+          <img id="avatarImg" alt="Your profile photo" hidden>
+          <div class="initial" id="avatarInitial" aria-hidden="true"></div>
+          <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/gif,image/webp" class="visually-hidden">
+          <label for="avatarInput" title="Change profile photo"><span aria-hidden="true">&#128247;</span><span class="visually-hidden">Change profile photo</span></label>
+        </div>
+        <div>
+          <p class="kicker muted">Account overview</p>
+          <h2 id="headName"></h2>
+        </div>
+      </div>
+
+      <dl class="fields">
+        <div>
+          <dt>Name</dt>
+          <dd id="profileName"></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd id="profileEmail"></dd>
+        </div>
+      </dl>
+
+      <div class="subcard">
+        <h3>Change password</h3>
+        <p class="muted">Enter your current password and choose a new one.</p>
+
+        <form id="passwordForm" novalidate>
+          <div class="field">
+            <label for="currentPassword">Current password</label>
+            <input type="password" id="currentPassword" autocomplete="current-password" required>
+          </div>
+          <div class="field">
+            <label for="newPassword">New password</label>
+            <input type="password" id="newPassword" autocomplete="new-password" minlength="6" required aria-describedby="newPasswordHint">
+            <p class="hint" id="newPasswordHint">Use at least 6 characters.</p>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm new password</label>
+            <input type="password" id="confirmPassword" autocomplete="new-password" required>
+          </div>
+          <button type="submit" class="pill dark">Update password</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/page.js"></script>
+  <script src="/js/profile.js"></script>
+</body>
+</html>

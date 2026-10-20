@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo | SMS</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+
+  <main class="wrap" hidden>
+    <div class="page-head">
+      <div>
+        <p class="kicker">Your time, your priorities</p>
+        <h1>ToDo list</h1>
+        <p class="muted" id="summary"></p>
+      </div>
+      <a class="pill" href="/api/todos/export" download>Export Excel</a>
+    </div>
+
+    <div class="flash" id="flash" role="status" hidden></div>
+
+    <section class="card">
+      <h2>Add a task</h2>
+      <form class="todo-form" id="todoForm" novalidate>
+        <div class="field">
+          <label for="title">What do you need to do?</label>
+          <input type="text" id="title" placeholder="e.g. Review lecture notes" maxlength="200" required>
+        </div>
+        <div class="field">
+          <label for="dueDate">Due date <span class="muted">(optional)</span></label>
+          <input type="date" id="dueDate">
+        </div>
+        <button type="submit" class="pill accent">Add task</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Your tasks</h2>
+      <ul class="tasks" id="tasks"></ul>
+      <div class="empty" id="empty" hidden>
+        <h3>Nothing on your list yet</h3>
+        <p>Add a task above to give your day a clear next step.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/page.js"></script>
+  <script src="/js/todo.js"></script>
+</body>
+</html>

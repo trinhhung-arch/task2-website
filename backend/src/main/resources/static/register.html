@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create account | SMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <section class="auth-form">
+        <a href="/login" class="brand"><span class="brand-mark">S</span>SMS</a>
+
+        <p class="kicker">Get started</p>
+        <h1>Create your account</h1>
+        <p class="lead">A few details and you're ready to go.</p>
+
+        <div class="alert" id="formAlert" role="alert" hidden></div>
+
+        <form id="registerForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" autocomplete="new-password" minlength="6" required aria-describedby="passwordHint">
+            <p class="hint" id="passwordHint">Must be at least 6 characters.</p>
+          </div>
+
+          <button type="submit" class="btn">Create account &nbsp;&rarr;</button>
+        </form>
+
+        <p class="switch">Already have an account?<a href="/login">Log in</a></p>
+      </section>
+
+      <aside class="auth-art" aria-hidden="true">
+        <span class="sparkle">&#10035;</span>
+        <p class="art-kicker">A fresh space to grow</p>
+        <h2>Start with an idea. See where it takes you.</h2>
+        <p class="art-sub">Make this space your own.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/register.js"></script>
+</body>
+</html>

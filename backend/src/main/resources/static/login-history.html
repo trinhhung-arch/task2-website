@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login history | SMS</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+
+  <main class="wrap" hidden>
+    <div class="page-head">
+      <div>
+        <p class="kicker">Account activity</p>
+        <h1>Login history</h1>
+        <p class="muted" id="summary"></p>
+      </div>
+      <a class="pill" href="/api/login-history/export" download>&#8595; Export Excel</a>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">User</th><th scope="col">Email</th><th scope="col">Login time</th><th scope="col">Result</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/js/page.js"></script>
+  <script>
+    requireUser().then(async function () {
+      const { data } = await api("/api/login-history");
+      const entries = Array.isArray(data) ? data : [];
+      const successful = entries.filter(function (e) { return e.success; }).length;
+      document.getElementById("summary").textContent =
+        entries.length + " recorded attempts  |  " + successful + " successful";
+
+      const rows = document.getElementById("rows");
+      entries.forEach(function (e) {
+        const tr = rows.insertRow();
+        [e.name, e.email, e.loginTime].forEach(function (value) {
+          tr.insertCell().textContent = value;
+        });
+        const badge = document.createElement("span");
+        badge.className = e.success ? "badge" : "badge failed";
+        badge.textContent = e.success ? "Success" : "Failed";
+        tr.insertCell().append(badge);
+      });
+    });
+  </script>
+</body>
+</html>

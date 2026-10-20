@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | SMS</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header id="siteHeader"></header>
+
+  <!-- Hidden until /api/me confirms the session -->
+  <main class="wrap" hidden>
+    <section class="hero">
+      <p class="kicker">A place to make it yours</p>
+      <h1>Welcome,<br><span id="heroName"></span>.</h1>
+      <p>A fresh space for your next chapter.</p>
+    </section>
+
+    <section class="card section">
+      <div class="split">
+        <div>
+          <p class="kicker">Student management system</p>
+          <h2>Your time.<br>Your goals.<br>Your way.</h2>
+        </div>
+        <p class="lead">SMS (Student Management System) is designed to help students take charge of their own time. Think about what you need to do, decide how to spend your day, and make space for study, activities, and rest.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Choose what matters</h3>
+          <p>Start with your priorities and the things you want to get done.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Shape your day</h3>
+          <p>Make a plan that fits your classes, commitments, and personal time.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Keep a healthy balance</h3>
+          <p>Reflect on how you spend your time and adjust your routine as you go.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="links">
+      <div>
+        <p class="kicker">Your profile</p>
+        <h2>Keep your details close.</h2>
+        <p class="muted">See your account information and update your profile photo in one place.</p>
+        <a class="arrow-link" href="/profile">Go to profile &rarr;</a>
+      </div>
+      <div>
+        <p class="kicker">Your activity</p>
+        <h2>A clear record.</h2>
+        <p class="muted">Review recent sign-in attempts and export your activity when you need it.</p>
+        <a class="arrow-link" href="/login-history">View login history &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/page.js"></script>
+  <script>
+    requireUser().then(function (user) {
+      document.getElementById("heroName").textContent = user.name;
+    });
+  </script>
+</body>
+</html>

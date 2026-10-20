@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in | SMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <section class="auth-form">
+        <a href="/login" class="brand"><span class="brand-mark">S</span>SMS</a>
+
+        <p class="kicker">Welcome back</p>
+        <h1>Log in to your account</h1>
+        <p class="lead">Pick up where you left off.</p>
+
+        <div class="alert" id="formAlert" role="alert" hidden></div>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="At least 6 characters" autocomplete="current-password" minlength="6" required aria-describedby="passwordHint">
+            <p class="hint" id="passwordHint">Must be at least 6 characters.</p>
+          </div>
+
+          <button type="submit" class="btn">Log in &nbsp;&rarr;</button>
+        </form>
+
+        <p class="switch">New here?<a href="/register">Create an account</a></p>
+      </section>
+
+      <aside class="auth-art" aria-hidden="true">
+        <span class="sparkle">&#10035;</span>
+        <p class="art-kicker">Make room for what matters</p>
+        <h2>Good things happen when you show up.</h2>
+        <p class="art-sub">Your next chapter starts here.</p>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal" id="successModal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
+      <div class="modal-icon" aria-hidden="true">&#10003;</div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <button type="button" class="btn" id="modalButton"></button>
+    </div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
